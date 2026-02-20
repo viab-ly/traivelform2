@@ -281,3 +281,4 @@ document.addEventListener('DOMContentLoaded', function() {
         doc.save('medical-consultation-form.pdf');
     });
 });
+});
