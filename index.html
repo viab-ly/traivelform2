@@ -246,17 +246,4 @@
             <div class="qr-container">
                 <h3>Medical Data QR Code</h3>
                 <div id="medicalQR"></div>
-            </div>
-        </div>
-    </div>
-    <div class="version-label" id="versionLabel">W3-fix</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        // Sync version label with QR format dropdown
-        document.getElementById('qrFormat').addEventListener('change', function() {
-            document.getElementById('versionLabel').textContent = this.value === 'base64' ? 'W4' : 'W3-fix';
-        });
-    </script>
-</body>
-</html>
+       
