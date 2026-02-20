@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reisemedizinische Beratung / Impfung</title>
+    <script src="https://cdn.jsdelivr.net/npm/kjua@0.9.0/dist/kjua.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-panel">
+            <h1>Reisemedizinische Beratung / Impfung</h1>
+            <p class="subtitle">Bitte vor jeder Impfung und Beratung ausfüllen, unterschreiben und dem Arzt/der Ärztin übergeben.</p>
+
+            <form id="medicalForm">
+                <!-- Personal Information -->
+                <div class="personal-info">
+                    <div class="form-row">
+                        <input type="text" id="name" placeholder="Name*" required>
+                        <input type="text" id="vorname" placeholder="Vornamen*" required>
+                        <input type="text" id="geb" placeholder="geb.*" required>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="text" id="strasse" placeholder="Straße/Nr.*" required>
+                        <input type="text" id="plz" placeholder="PLZ*" required>
+                        <input type="text" id="ort" placeholder="Ort*" required>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="email" id="email" placeholder="E-Mail*" required>
+                        <input type="tel" id="telefon" placeholder="Tel./Mobil*" required>
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <div class="form-row">
+                        <input type="text" id="reiseland1" placeholder="Reiseland 1*" required>
+                        <input type="text" id="reiseland2" placeholder="Reiseland 2*">
+                        <input type="text" id="reiseland3" placeholder="Reiseland 3*">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="reiseland4" placeholder="Reiseland 4*">
+                        <input type="text" id="reiseland5" placeholder="Reiseland 5*">
+                        <input type="text" id="reiseland6" placeholder="Reiseland 6*">
+                    </div>
+                    <div class="form-row">
+                        <div class="labeled-input">
+                            <label for="more_countries">Mehr als 6 Länder</label>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="more_countries">
+                            </div>
+                        </div>
+                        <div class="labeled-input">
+                            <label for="abreisetermin">Abreise</label>
+                            <input type="date" id="abreisetermin" required lang="de" placeholder="TT.MM.JJJJ">
+                        </div>
+                        <div class="labeled-input">
+                            <label>Reisedauer</label>
+                            <div class="duration-inputs">
+                                <select id="reisedauer_number" required>
+                                    <option value="">Dauer*</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                                <select id="reisedauer_unit" required>
+                                    <option value="">Einheit*</option>
+                                    <option value="Tag(e)">Tag(e)</option>
+                                    <option value="Woche(n)">Woche(n)</option>
+                                    <option value="Monat(e)">Monat(e)</option>
+                                    <option value="Jahr(e)">Jahr(e)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <select id="reisestil" class="full-width" placeholder="Maximal einen Reisestil auswählen">
+                            <option value="">Maximal einen Reisestil auswählen</option>
+                            <option value="hotel">Hotel oder Ressort oder Safari</option>
+                            <option value="backpacking">Backpacking</option>
+                            <option value="bergbesteigung">Bergbesteigung oder Expedition</option>
+                            <option value="business">Business-Trip</option>
+                            <option value="verwandte">Besuch bei Verwandten oder Hochzeit</option>
+                            <option value="kreuzfahrt">Kreuzfahrt</option>
+                            <option value="studium">Studienaufenthalt</option>
+                            <option value="hilfe">Hilfseinsatz oder Missionstätigkeit</option>
+                            <option value="migration">Migration oder anderer Langzeitaufenthalt</option>
+                        </select>
+                    </div>
+                    <hr class="form-divider">
+
+                    <!-- Medical Questions -->
+                </div>
+
+                <div class="medical-questions">
+                    <div class="question-row">
+                        <label>Leiden Sie z. Zt. an einer akuten oder chronischen Erkrankung? Ggfs. welche?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q1" value="ja"> Ja
+                            <input type="radio" name="q1" value="nein"> Nein
+                        </div>
+                        <input type="text" id="q1_detail" placeholder="Falls ja, welche?">
+                    </div>
+
+                    <div class="question-row">
+                        <label>Nehmen Sie z. Zt. Medikamente ein?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q2" value="ja"> Ja
+                            <input type="radio" name="q2" value="nein"> Nein
+                        </div>
+                        <input type="text" id="q2_detail" placeholder="Ggfs. welche?">
+                    </div>
+
+                    <div class="question-row">
+                        <label>Ist bei Ihnen eine Immunsuppression bekannt?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q3" value="ja"> Ja
+                            <input type="radio" name="q3" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Ist bei Ihnen die Thymusdrüse entfernt worden oder eine Thymuserkrankung bekannt?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q4" value="ja"> Ja
+                            <input type="radio" name="q4" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Sind psychische Erkrankungen oder Krampfanfälle aufgetreten?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q5" value="ja"> Ja
+                            <input type="radio" name="q5" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Besteht eine Überempfindlichkeit (Allergie) gegen Hühnereiweiß?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q6" value="ja"> Ja
+                            <input type="radio" name="q6" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Besteht eine andere Allergie?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q7" value="ja"> Ja
+                            <input type="radio" name="q7" value="nein"> Nein
+                        </div>
+                        <input type="text" id="q7_detail" placeholder="Ggfs. welche?">
+                    </div>
+
+                    <div class="question-row">
+                        <label>Falls Gelbfieberimpfung: Ich habe das Aufklärungsblatt gelesen</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q8" value="ja"> Ja
+                            <input type="radio" name="q8" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Sind in den letzten 4 Wochen Impfungen erfolgt?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q9" value="ja"> Ja
+                            <input type="radio" name="q9" value="nein"> Nein
+                        </div>
+                        <input type="text" id="q9_detail" placeholder="Ggfs. welche Impfungen / wann?">
+                    </div>
+
+                    <div class="question-row">
+                        <label>Sind bei einer Impfung, Injektion oder Blutabnahme Schwäche- oder Ohnmachtszustände aufgetreten?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q10" value="ja"> Ja
+                            <input type="radio" name="q10" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Sind Unverträglichkeiten gegen Impfungen/ Medikamente bekannt?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q11" value="ja"> Ja
+                            <input type="radio" name="q11" value="nein"> Nein
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label>Bei Frauen: Besteht eine Schwangerschaft oder stillen Sie gerade?</label>
+                        <div class="radio-group">
+                            <input type="radio" name="q12" value="ja"> Ja
+                            <input type="radio" name="q12" value="nein"> Nein
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row" style="align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <label for="qrFormat" style="font-weight: bold; white-space: nowrap;">QR-Format:</label>
+                    <select id="qrFormat" style="padding: 6px; border-radius: 4px; border: 2px solid #888;">
+                        <option value="w3fix">W3-fix (Plain JSON — alte App)</option>
+                        <option value="base64">W4 (Base64 — neue App)</option>
+                    </select>
+                </div>
+                <button type="button" id="generateQR">1. Generiere QR</button>
+                <button type="button" id="createPDF" style="background-color: orange;">2. Generiere PDF</button>
+
+            </form>
+        </div>
+
+        <div class="qr-panel">
+            <div class="qr-container">
+                <h3>Personal Data QR Code</h3>
+                <div id="personalQR"></div>
+            </div>
+            <div class="qr-container">
+                <h3>Medical Data QR Code</h3>
+                <div id="medicalQR"></div>
+            </div>
+        </div>
+    </div>
+    <div class="version-label" id="versionLabel">W3-fix</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Sync version label with QR format dropdown
+        document.getElementById('qrFormat').addEventListener('change', function() {
+            document.getElementById('versionLabel').textContent = this.value === 'base64' ? 'W4' : 'W3-fix';
+        });
+    </script>
+</body>
+</html>
