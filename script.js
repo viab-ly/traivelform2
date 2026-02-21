@@ -91,8 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         switchLanguage(saved);
     }
 
-    initLanguageSwitcher();
-
     // =========================================
     // TRANSLITERATION
     // =========================================
@@ -465,4 +463,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         doc.save('reisemedizin-formular.pdf');
     });
+
+    // =========================================
+    // i18n INIT (last, so all listeners above are already attached)
+    // =========================================
+
+    try {
+        initLanguageSwitcher();
+    } catch (e) {
+        console.warn('i18n init failed:', e);
+    }
 });
