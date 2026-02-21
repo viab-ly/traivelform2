@@ -4,118 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reisemedizinische Beratung / Impfung</title>
-    <script src="https://cdn.jsdelivr.net/npm/kjua@0.9.0/dist/kjua.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kjua@0.9.0/dist/kjua.min.js"
+            integrity="sha384-M5FTMk0A9mXwnBPMIpb/P0gQDnhlMFqGOBqwDH33gfOLxk0bKQaGGGMbJzQ8m/L"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="form-panel">
-            <h1>Reisemedizinische Beratung / Impfung</h1>
-            <p class="subtitle">Bitte vor jeder Impfung und Beratung ausfüllen, unterschreiben und dem Arzt/der Ärztin übergeben.</p>
+            <div class="language-switcher" id="langSwitcher"></div>
+            <h1 data-i18n="pageTitle">Reisemedizinische Beratung / Impfung</h1>
+            <p class="subtitle" data-i18n="subtitle">Bitte vor jeder Impfung und Beratung ausfüllen, unterschreiben und dem Arzt/der Ärztin übergeben.</p>
 
             <form id="medicalForm">
                 <!-- Personal Information -->
                 <div class="personal-info">
                     <div class="form-row">
-                        <input type="text" id="name" placeholder="Name*" required>
-                        <input type="text" id="vorname" placeholder="Vornamen*" required>
-                        <input type="text" id="geb" placeholder="geb.*" required>
+                        <input type="text" id="titel" list="titel-liste" maxlength="25" placeholder="Titel (z.B. Dr., Prof.)" data-i18n-ph="ph_titel" autocomplete="honorific-prefix">
+                        <datalist id="titel-liste">
+                            <option value="Dr.">
+                            <option value="Prof.">
+                            <option value="Prof. Dr.">
+                            <option value="Dr. med.">
+                            <option value="Prof. Dr. med.">
+                            <option value="Dipl.-Ing.">
+                        </datalist>
+                        <input type="text" id="name" maxlength="40" placeholder="Name*" data-i18n-ph="ph_name" required>
+                        <input type="text" id="vorname" maxlength="40" placeholder="Vornamen*" data-i18n-ph="ph_vorname" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="geb" inputmode="numeric" pattern="\d{2}\.\d{2}\.\d{4}" maxlength="10" placeholder="Geburtsdatum (TT.MM.JJJJ)*" data-i18n-ph="ph_geb" required>
                     </div>
 
                     <div class="form-row">
-                        <input type="text" id="strasse" placeholder="Straße/Nr.*" required>
-                        <input type="text" id="plz" placeholder="PLZ*" required>
-                        <input type="text" id="ort" placeholder="Ort*" required>
+                        <input type="text" id="strasse" maxlength="60" placeholder="Straße/Nr.*" data-i18n-ph="ph_strasse" required>
+                        <input type="text" id="plz" inputmode="numeric" pattern="\d{4,10}" maxlength="10" placeholder="PLZ*" data-i18n-ph="ph_plz" required>
+                        <input type="text" id="ort" maxlength="40" placeholder="Ort*" data-i18n-ph="ph_ort" required>
                     </div>
 
                     <div class="form-row">
-                        <input type="email" id="email" placeholder="E-Mail*" required>
-                        <input type="tel" id="telefon" placeholder="Tel./Mobil*" required>
+                        <input type="email" id="email" maxlength="60" placeholder="E-Mail*" data-i18n-ph="ph_email" required>
+                        <input type="tel" id="telefon" maxlength="25" pattern="[+\d\s\-/()]{5,25}" placeholder="Tel./Mobil*" data-i18n-ph="ph_telefon" required>
                     </div>
 
                     <hr class="form-divider">
 
                     <div class="form-row">
-                        <input type="text" id="reiseland1" placeholder="Reiseland 1*" required>
-                        <input type="text" id="reiseland2" placeholder="Reiseland 2*">
-                        <input type="text" id="reiseland3" placeholder="Reiseland 3*">
+                        <input type="text" id="reiseland1" maxlength="30" placeholder="Reiseland 1*" data-i18n-ph="ph_reiseland1" required>
+                        <input type="text" id="reiseland2" maxlength="30" placeholder="Reiseland 2" data-i18n-ph="ph_reiseland2">
+                        <input type="text" id="reiseland3" maxlength="30" placeholder="Reiseland 3" data-i18n-ph="ph_reiseland3">
                     </div>
                     <div class="form-row">
-                        <input type="text" id="reiseland4" placeholder="Reiseland 4*">
-                        <input type="text" id="reiseland5" placeholder="Reiseland 5*">
-                        <input type="text" id="reiseland6" placeholder="Reiseland 6*">
+                        <input type="text" id="reiseland4" maxlength="30" placeholder="Reiseland 4" data-i18n-ph="ph_reiseland4">
+                        <input type="text" id="reiseland5" maxlength="30" placeholder="Reiseland 5" data-i18n-ph="ph_reiseland5">
+                        <input type="text" id="reiseland6" maxlength="30" placeholder="Reiseland 6" data-i18n-ph="ph_reiseland6">
                     </div>
                     <div class="form-row">
                         <div class="labeled-input">
-                            <label for="more_countries">Mehr als 6 Länder</label>
+                            <label for="more_countries" data-i18n="lbl_more_countries">Mehr als 6 Länder</label>
                             <div class="checkbox-container">
                                 <input type="checkbox" id="more_countries">
                             </div>
                         </div>
                         <div class="labeled-input">
-                            <label for="abreisetermin">Abreise</label>
-                            <input type="date" id="abreisetermin" required lang="de" placeholder="TT.MM.JJJJ">
+                            <label for="abreisetermin" data-i18n="lbl_abreise">Abreise*</label>
+                            <input type="date" id="abreisetermin" required lang="de">
                         </div>
                         <div class="labeled-input">
-                            <label>Reisedauer</label>
+                            <label data-i18n="lbl_reisedauer">Reisedauer*</label>
                             <div class="duration-inputs">
                                 <select id="reisedauer_number" required>
-                                    <option value="">Dauer*</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                        </select>
+                                    <option value="" data-i18n="opt_dauer">Dauer*</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
                                 <select id="reisedauer_unit" required>
-                                    <option value="">Einheit*</option>
-                                    <option value="Tag(e)">Tag(e)</option>
-                                    <option value="Woche(n)">Woche(n)</option>
-                                    <option value="Monat(e)">Monat(e)</option>
-                                    <option value="Jahr(e)">Jahr(e)</option>
+                                    <option value="" data-i18n="opt_einheit">Einheit*</option>
+                                    <option value="Tag(e)" data-i18n="opt_tage">Tag(e)</option>
+                                    <option value="Woche(n)" data-i18n="opt_wochen">Woche(n)</option>
+                                    <option value="Monat(e)" data-i18n="opt_monate">Monat(e)</option>
+                                    <option value="Jahr(e)" data-i18n="opt_jahre">Jahr(e)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <select id="reisestil" class="full-width" placeholder="Maximal einen Reisestil auswählen">
-                            <option value="">Maximal einen Reisestil auswählen</option>
-                            <option value="hotel">Hotel oder Ressort oder Safari</option>
-                            <option value="backpacking">Backpacking</option>
-                            <option value="bergbesteigung">Bergbesteigung oder Expedition</option>
-                            <option value="business">Business-Trip</option>
-                            <option value="verwandte">Besuch bei Verwandten oder Hochzeit</option>
-                            <option value="kreuzfahrt">Kreuzfahrt</option>
-                            <option value="studium">Studienaufenthalt</option>
-                            <option value="hilfe">Hilfseinsatz oder Missionstätigkeit</option>
-                            <option value="migration">Migration oder anderer Langzeitaufenthalt</option>
+                        <select id="reisestil" class="full-width">
+                            <option value="" data-i18n="opt_rs_placeholder">Maximal einen Reisestil auswählen</option>
+                            <option value="hotel" data-i18n="opt_rs_hotel">Hotel oder Ressort oder Safari</option>
+                            <option value="backpacking" data-i18n="opt_rs_backpacking">Backpacking</option>
+                            <option value="bergbesteigung" data-i18n="opt_rs_bergbesteigung">Bergbesteigung oder Expedition</option>
+                            <option value="business" data-i18n="opt_rs_business">Business-Trip</option>
+                            <option value="verwandte" data-i18n="opt_rs_verwandte">Besuch bei Verwandten oder Hochzeit</option>
+                            <option value="kreuzfahrt" data-i18n="opt_rs_kreuzfahrt">Kreuzfahrt</option>
+                            <option value="studium" data-i18n="opt_rs_studium">Studienaufenthalt</option>
+                            <option value="hilfe" data-i18n="opt_rs_hilfe">Hilfseinsatz oder Missionstätigkeit</option>
+                            <option value="migration" data-i18n="opt_rs_migration">Migration oder anderer Langzeitaufenthalt</option>
                         </select>
                     </div>
                     <hr class="form-divider">
@@ -124,139 +138,134 @@
                 </div>
 
                 <div class="medical-questions">
+                    <p class="medical-hint" data-i18n="medical_hint">Bitte alle Fragen beantworten.</p>
+
                     <div class="question-row">
-                        <label>Leiden Sie z. Zt. an einer akuten oder chronischen Erkrankung? Ggfs. welche?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q1" value="ja"> Ja
-                            <input type="radio" name="q1" value="nein"> Nein
+                        <label id="label-q1" data-i18n="q1">Leiden Sie z. Zt. an einer akuten oder chronischen Erkrankung? Ggfs. welche?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q1">
+                            <label><input type="radio" name="q1" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q1" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
-                        <input type="text" id="q1_detail" placeholder="Falls ja, welche?">
+                        <input type="text" id="q1_detail" maxlength="80" placeholder="Falls ja, welche?" data-i18n-ph="ph_detail_welche">
                     </div>
 
                     <div class="question-row">
-                        <label>Nehmen Sie z. Zt. Medikamente ein?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q2" value="ja"> Ja
-                            <input type="radio" name="q2" value="nein"> Nein
+                        <label id="label-q2" data-i18n="q2">Nehmen Sie z. Zt. Medikamente ein?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q2">
+                            <label><input type="radio" name="q2" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q2" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
-                        <input type="text" id="q2_detail" placeholder="Ggfs. welche?">
+                        <input type="text" id="q2_detail" maxlength="80" placeholder="Ggfs. welche?" data-i18n-ph="ph_detail_ggfs">
                     </div>
 
                     <div class="question-row">
-                        <label>Ist bei Ihnen eine Immunsuppression bekannt?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q3" value="ja"> Ja
-                            <input type="radio" name="q3" value="nein"> Nein
-                        </div>
-                    </div>
-
-                    <div class="question-row">
-                        <label>Ist bei Ihnen die Thymusdrüse entfernt worden oder eine Thymuserkrankung bekannt?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q4" value="ja"> Ja
-                            <input type="radio" name="q4" value="nein"> Nein
+                        <label id="label-q3" data-i18n="q3">Ist bei Ihnen eine Immunsuppression bekannt?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q3">
+                            <label><input type="radio" name="q3" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q3" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
                     </div>
 
                     <div class="question-row">
-                        <label>Sind psychische Erkrankungen oder Krampfanfälle aufgetreten?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q5" value="ja"> Ja
-                            <input type="radio" name="q5" value="nein"> Nein
+                        <label id="label-q4" data-i18n="q4">Ist bei Ihnen die Thymusdrüse entfernt worden oder eine Thymuserkrankung bekannt?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q4">
+                            <label><input type="radio" name="q4" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q4" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
                     </div>
 
                     <div class="question-row">
-                        <label>Besteht eine Überempfindlichkeit (Allergie) gegen Hühnereiweiß?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q6" value="ja"> Ja
-                            <input type="radio" name="q6" value="nein"> Nein
+                        <label id="label-q5" data-i18n="q5">Sind psychische Erkrankungen oder Krampfanfälle aufgetreten?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q5">
+                            <label><input type="radio" name="q5" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q5" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
                     </div>
 
                     <div class="question-row">
-                        <label>Besteht eine andere Allergie?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q7" value="ja"> Ja
-                            <input type="radio" name="q7" value="nein"> Nein
-                        </div>
-                        <input type="text" id="q7_detail" placeholder="Ggfs. welche?">
-                    </div>
-
-                    <div class="question-row">
-                        <label>Falls Gelbfieberimpfung: Ich habe das Aufklärungsblatt gelesen</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q8" value="ja"> Ja
-                            <input type="radio" name="q8" value="nein"> Nein
+                        <label id="label-q6" data-i18n="q6">Besteht eine Überempfindlichkeit (Allergie) gegen Hühnereiweiß?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q6">
+                            <label><input type="radio" name="q6" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q6" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
                     </div>
 
                     <div class="question-row">
-                        <label>Sind in den letzten 4 Wochen Impfungen erfolgt?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q9" value="ja"> Ja
-                            <input type="radio" name="q9" value="nein"> Nein
+                        <label id="label-q7" data-i18n="q7">Besteht eine andere Allergie?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q7">
+                            <label><input type="radio" name="q7" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q7" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
-                        <input type="text" id="q9_detail" placeholder="Ggfs. welche Impfungen / wann?">
+                        <input type="text" id="q7_detail" maxlength="80" placeholder="Ggfs. welche?" data-i18n-ph="ph_detail_ggfs">
                     </div>
 
                     <div class="question-row">
-                        <label>Sind bei einer Impfung, Injektion oder Blutabnahme Schwäche- oder Ohnmachtszustände aufgetreten?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q10" value="ja"> Ja
-                            <input type="radio" name="q10" value="nein"> Nein
-                        </div>
-                    </div>
-
-                    <div class="question-row">
-                        <label>Sind Unverträglichkeiten gegen Impfungen/ Medikamente bekannt?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q11" value="ja"> Ja
-                            <input type="radio" name="q11" value="nein"> Nein
+                        <label id="label-q8" data-i18n="q8">Falls Gelbfieberimpfung: Ich habe das Aufklärungsblatt gelesen</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q8">
+                            <label><input type="radio" name="q8" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q8" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
                     </div>
 
                     <div class="question-row">
-                        <label>Bei Frauen: Besteht eine Schwangerschaft oder stillen Sie gerade?</label>
-                        <div class="radio-group">
-                            <input type="radio" name="q12" value="ja"> Ja
-                            <input type="radio" name="q12" value="nein"> Nein
+                        <label id="label-q9" data-i18n="q9">Sind in den letzten 4 Wochen Impfungen erfolgt?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q9">
+                            <label><input type="radio" name="q9" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q9" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
+                        </div>
+                        <input type="text" id="q9_detail" maxlength="80" placeholder="Ggfs. welche Impfungen / wann?" data-i18n-ph="ph_detail_impfungen">
+                    </div>
+
+                    <div class="question-row">
+                        <label id="label-q10" data-i18n="q10">Sind bei einer Impfung, Injektion oder Blutabnahme Schwäche- oder Ohnmachtszustände aufgetreten?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q10">
+                            <label><input type="radio" name="q10" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q10" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label id="label-q11" data-i18n="q11">Sind Unverträglichkeiten gegen Impfungen/ Medikamente bekannt?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q11">
+                            <label><input type="radio" name="q11" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q11" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
+                        </div>
+                    </div>
+
+                    <div class="question-row">
+                        <label id="label-q12" data-i18n="q12">Bei Frauen: Besteht eine Schwangerschaft oder stillen Sie gerade?</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="label-q12">
+                            <label><input type="radio" name="q12" value="ja"> <span data-i18n="radio_ja">Ja</span></label>
+                            <label><input type="radio" name="q12" value="nein"> <span data-i18n="radio_nein">Nein</span></label>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-row" style="align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <label for="qrFormat" style="font-weight: bold; white-space: nowrap;">QR-Format:</label>
-                    <select id="qrFormat" style="padding: 6px; border-radius: 4px; border: 2px solid #888;">
-                        <option value="w3fix">W3-fix (Plain JSON — alte App)</option>
-                        <option value="base64">W4 (Base64 — neue App)</option>
-                    </select>
+                <div class="button-row">
+                    <button type="button" id="generateQR" data-i18n="btn_qr">1. Generiere QR</button>
+                    <button type="button" id="createPDF" class="btn-pdf" data-i18n="btn_pdf">2. Generiere PDF</button>
+                    <button type="button" id="resetForm" class="btn-reset" data-i18n="btn_reset">Formular zurücksetzen</button>
                 </div>
-                <button type="button" id="generateQR">1. Generiere QR</button>
-                <button type="button" id="createPDF" style="background-color: orange;">2. Generiere PDF</button>
 
             </form>
         </div>
 
         <div class="qr-panel">
             <div class="qr-container">
-                <h3>Personal Data QR Code</h3>
+                <h3 data-i18n="qr_personal">Persönliche Daten (QR 1)</h3>
                 <div id="personalQR"></div>
             </div>
             <div class="qr-container">
-                <h3>Medical Data QR Code</h3>
+                <h3 data-i18n="qr_medical">Medizinische Daten (QR 2)</h3>
                 <div id="medicalQR"></div>
             </div>
         </div>
     </div>
-    <div class="version-label" id="versionLabel">W3-fix</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <div class="version-label">JSON</div>
+    <script src="i18n.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+            integrity="sha384-KFmFGkGhMlmFJsZaFaBKsFO6NLPJZ8IDVe/2T2rSBMz8KLBRmaRNK3mS7TiJoQM"
+            crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <script>
-        // Sync version label with QR format dropdown
-        document.getElementById('qrFormat').addEventListener('change', function() {
-            document.getElementById('versionLabel').textContent = this.value === 'base64' ? 'W4' : 'W3-fix';
-        });
-    </script>
 </body>
 </html>

@@ -38,6 +38,39 @@ body {
   min-width: 0;
 }
 
+/* Language switcher */
+.language-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.lang-btn:hover {
+  border-color: #006400;
+}
+
+.lang-btn.active {
+  border-color: #006400;
+  background-color: #e8f5e9;
+  font-weight: bold;
+}
+
 h1 {
   color: #006400;
   margin-bottom: 10px;
@@ -84,6 +117,7 @@ h1 {
   appearance: auto;
   font-family: inherit;
   font-size: inherit;
+  background-color: white;
 }
 
 .form-row select.full-width {
@@ -91,10 +125,14 @@ h1 {
   flex: none;
 }
 
-.form-row input::placeholder,
-.form-row select:invalid,
-input[type="date"]:not(:valid) {
+.form-row input::placeholder {
   color: #757575;
+}
+
+/* Placeholder style for selects — slightly dimmed but not grey enough to look disabled */
+.form-row select:invalid {
+  color: #555;
+  font-style: italic;
 }
 
 input[type="date"] {
@@ -108,6 +146,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 input[type="date"]:not(:valid) {
   color: #757575;
+}
+
+/* Validation feedback: green/red borders on text inputs */
+input:not([type="radio"]):not([type="checkbox"]):not([type="date"]).valid {
+  border-color: #2e7d32;
+}
+
+input:not([type="radio"]):not([type="checkbox"]):not([type="date"]).invalid {
+  border-color: #d32f2f;
+  box-shadow: 0 0 3px rgba(211, 47, 47, 0.3);
 }
 
 .checkbox-container {
@@ -164,8 +212,16 @@ input[type="date"]:not(:valid) {
   font-size: inherit;
 }
 
+/* Medical questions */
 .medical-questions {
   margin-top: 20px;
+}
+
+.medical-hint {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 10px;
+  font-size: 0.9em;
 }
 
 .question-row {
@@ -178,6 +234,19 @@ input[type="date"]:not(:valid) {
   margin: 10px 0;
 }
 
+.radio-group label {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+/* Buttons */
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
 button {
   background-color: #006400;
   color: white;
@@ -185,13 +254,30 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
+  font-size: inherit;
 }
 
 button:hover {
   background-color: #004d00;
 }
 
+.btn-pdf {
+  background-color: #e67e00;
+}
+
+.btn-pdf:hover {
+  background-color: #cc6e00;
+}
+
+.btn-reset {
+  background-color: #757575;
+}
+
+.btn-reset:hover {
+  background-color: #616161;
+}
+
+/* Signature row (PDF only, kept for reference) */
 .signature-row {
   display: flex;
   gap: 20px;
@@ -216,6 +302,7 @@ button:hover {
   border-radius: 4px;
 }
 
+/* QR panel */
 .qr-container {
   display: flex;
   flex-direction: column;
